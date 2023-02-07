@@ -5,6 +5,7 @@
    mode: 'development',
    entry: {
      index: './src/index.js',
+     gameBoard:'./src/gameBoard.js'
    },
    devtool: 'inline-source-map',
   devServer: {

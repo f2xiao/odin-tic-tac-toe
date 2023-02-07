@@ -1,1 +1,2 @@
-alert("hello");
+import gameBoard from "./gameBoard"
+gameBoard.render();
