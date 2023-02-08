@@ -3,7 +3,7 @@ import displayController from "./displayController";
 
 const player1 = Player('tom', 'x');
 const player2 = Player('oreo', 'o');
-let {isXNext} = displayController(player2);
+let { isXNext } = displayController(player2);
 
 let template = `<h1>Tic Tac Toe</h1>
 <div id="board">
@@ -24,6 +24,7 @@ let template = `<h1>Tic Tac Toe</h1>
   </ul>
 </div>`;
 
+
 let board = Array(9).fill(' ');
 
 function createBoard() {
@@ -33,21 +34,18 @@ function createBoard() {
   return element;
 }
 
-function initBoard() {
-  const element = createBoard();
+const element = createBoard();
   
-  document.body.appendChild(element);
+document.body.appendChild(element);
+//  Cache  DOM//  Cache  DOM
+const gameBoard = element.querySelector('#board');
+const lis = gameBoard.querySelectorAll('li');
 
-  //  Cache  DOM//  Cache  DOM
-  const gameBoard = element.querySelector('#board');
-  const lis = gameBoard.querySelectorAll('li');
-
+function initBoard() {
   // Bind Events 
-  element.addEventListener('click', (e) => { markBoard(e,lis)})
-
-
+  element.addEventListener('click', markBoard);
   // Render
-  render(lis);
+  render();
 }
 
 function checkWinner() {
@@ -71,7 +69,11 @@ function checkWinner() {
 
   return result.some(ele=>ele==true);
 }
-function markBoard(e,lis) {
+
+function checkTie() {
+  return board.every(ele => ele != ' ');
+}
+function markBoard(e) {
   // console.log(e.target);
   if (e.target.tagName == "LI" && e.target.textContent == ' ') {
     const mark = isXNext ? 'x' : 'o'
@@ -79,12 +81,23 @@ function markBoard(e,lis) {
     board[index] = mark;
     render(lis);
     // check if there is a winner if yes stop the game
-    console.log(checkWinner())
-    isXNext = !isXNext;
+	  // by remove the click handler from the board
+    const tie = checkTie();
+    const winner = checkWinner();
+    if (tie || winner) {
+      element.removeEventListener('click', markBoard);
+    }
+    if (tie) {
+      console.log('there is a tie');
+    }
+    if (checkWinner()) {
+	    console.log('there is a winner, game over');
+    }
+	  isXNext = !isXNext;
   }
 }
 
-function render(lis) {
+function render() {
   board.map((ele,index)=>lis[index].textContent=board[index])
 }
 
