@@ -88,7 +88,7 @@ function markBoard(e) {
       element.removeEventListener('click', markBoard);
     }
     if (tie) {
-      console.log('there is a tie');
+      console.log(`it's a tie`);
     }
     if (checkWinner()) {
 	    console.log('there is a winner, game over');
