@@ -78,9 +78,7 @@ function markBoard(e,lis) {
     const index = e.target.getAttribute('data-index');
     board[index] = mark;
     render(lis);
-    // if (checkWinner) {
-    //   alert(`the winner is ${mark}`)
-    // }
+    // check if there is a winner if yes stop the game
     console.log(checkWinner())
     isXNext = !isXNext;
   }
