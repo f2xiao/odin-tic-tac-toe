@@ -8,12 +8,13 @@
      gameBoard:'./src/gameBoard.js'
    },
    devtool: 'inline-source-map',
-  devServer: {
-    static: './dist',
-  },
+   devServer: {
+     static: './dist',
+   },
    plugins: [
      new HtmlWebpackPlugin({
-       title: 'Development',
+       title: 'Tic Tac Toe',
+       template: './src/index.html'
      }),
    ],
    output: {

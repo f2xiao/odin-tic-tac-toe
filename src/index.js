@@ -1,2 +1,3 @@
 import gameBoard from "./gameBoard"
-gameBoard.render();
+
+gameBoard();
