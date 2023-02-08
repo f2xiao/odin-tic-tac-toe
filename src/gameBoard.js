@@ -28,7 +28,7 @@ let board = Array(9).fill(' ');
 
 function createBoard() {
   const element = document.createElement('div');
-  element.setAttribute('id', "#gameBoardModulev")
+  element.setAttribute('id', "gameBoardModule")
   element.innerHTML = template;
   return element;
 }
