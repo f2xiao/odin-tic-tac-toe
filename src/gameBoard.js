@@ -1,8 +1,8 @@
 import {Player} from './Player'
+import displayController from "./displayController";
+
 const player1 = Player('tom', 'x');
 const player2 = Player('oreo', 'o');
-
-import displayController from "./displayController";
 let {isXNext} = displayController(player2);
 
 let template = `<h1>Tic Tac Toe</h1>
