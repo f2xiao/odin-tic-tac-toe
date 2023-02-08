@@ -1,3 +1,30 @@
-#gameBoardModule{
-  color: red;
+*{
+  margin:0;
+  padding:0;
 }
+
+#gameBoardModule{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.row li{
+  list-style: none;
+  border: solid 1px black;
+  height:100px;
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
+
+.row{
+  display: flex;
+  width: 300px;
+}
+
+
