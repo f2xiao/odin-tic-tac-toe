@@ -2,7 +2,7 @@
   "name": "odin-tic-tac-toe",
   "version": "1.0.0",
   "description": "simple tic  tac toe game with javascript modules and factory funnctions",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
