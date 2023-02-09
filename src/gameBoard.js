@@ -6,7 +6,7 @@ const player2 = Player('oreo', 'o');
 let { isXNext, checkTie, checkWinner, isGameOver } = displayController(player1);
 
 let template = `<h1>Tic Tac Toe</h1>
-<p>Player X is the next</p>
+<p id="message"></p>
 <div id="board">
   <ul class="row">
     <li data-index="0"></li>
@@ -41,6 +41,7 @@ document.body.appendChild(element);
 //  Cache  DOM//  Cache  DOM
 const gameBoard = element.querySelector('#board');
 const lis = gameBoard.querySelectorAll('li');
+const message = element.querySelector('#message');
 
 function initBoard() {
   // Bind Events 
@@ -49,26 +50,31 @@ function initBoard() {
   render();
 }
 
+function getMark() {
+  return isXNext ? 'x' : 'o';
+}
+
 function markBoard(e) {
   // console.log(e.target);
   if (e.target.tagName == "LI" && e.target.textContent == ' ') {
-    const mark = isXNext ? 'x' : 'o'
+    const mark = getMark();
     const index = e.target.getAttribute('data-index');
     board[index] = mark;
+    isXNext = !isXNext;
     render();
     // check if the game is over: either a winner or a tie
     const gameResults = isGameOver(board);
     if (gameResults.gameIsOver) {
       element.removeEventListener('click', markBoard);
-      const message = gameResults.tie ? `It's a tie` : `Player ${gameResults.winner.player} wins`;
-      console.log(message);
+      const text = gameResults.tie ? `It's a tie` : `Player ${gameResults.winner.player} wins`;
+      message.textContent = text;
       return;
     }
-	  isXNext = !isXNext;
   }
 }
 
 function render() {
+  message.textContent = `Player ${getMark()}'s turn`;
   board.map((ele,index)=>lis[index].textContent=board[index])
 }
 

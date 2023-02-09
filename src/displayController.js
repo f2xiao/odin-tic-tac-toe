@@ -44,6 +44,6 @@ export default function (player) {
     isXNext,
     checkWinner,
     checkTie,
-    isGameOver
+    isGameOver,
   }
 }
