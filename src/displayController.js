@@ -32,7 +32,7 @@ function isGameOver(board) {
   const winner = checkWinner(board)[0];
   console.log(winner)
   return {
-    gameIsOver: tie || winner?.someoneWins,
+    gameIsOver: winner?.someoneWins || tie ,
     tie,
     winner
   }

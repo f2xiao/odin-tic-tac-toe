@@ -66,7 +66,7 @@ function markBoard(e) {
     const gameResults = isGameOver(board);
     if (gameResults.gameIsOver) {
       element.removeEventListener('click', markBoard);
-      const text = gameResults.tie ? `It's a tie` : `Player ${gameResults.winner.player} wins`;
+      const text = gameResults.winner?.someoneWins ? `Player ${gameResults.winner.player} wins` : `It's a tie` ;
       message.textContent = text;
       return;
     }
