@@ -3,9 +3,10 @@ import displayController from "./displayController";
 
 const player1 = Player('tom', 'x');
 const player2 = Player('oreo', 'o');
-let { isXNext, checkTie, checkWinner } = displayController(player2);
+let { isXNext, checkTie, checkWinner, isGameOver } = displayController(player1);
 
 let template = `<h1>Tic Tac Toe</h1>
+<p>Player X is the next</p>
 <div id="board">
   <ul class="row">
     <li data-index="0"></li>
@@ -48,49 +49,20 @@ function initBoard() {
   render();
 }
 
-// function checkWinner() {
-//   const lines = [
-//     [0, 1, 2],
-//     [3, 4, 5],
-//     [6, 7, 8],
-//     [0, 3, 6],
-//     [1, 4, 7],
-//     [2, 5, 8],
-//     [0, 4, 8],
-//     [2, 4, 6]
-//   ]
-//   const result = lines.map(line => {
-//     const [a, b, c] = line;
-//     // console.log(a,b,c)
-//     if (board[a]!=' ' && board[a] == board[b] && board[b]== board[c]) {
-//       return true;
-//     }
-//   })
-
-//   return result.some(ele=>ele==true);
-// }
-
-// function checkTie() {
-//   return board.every(ele => ele != ' ');
-// }
 function markBoard(e) {
   // console.log(e.target);
   if (e.target.tagName == "LI" && e.target.textContent == ' ') {
     const mark = isXNext ? 'x' : 'o'
     const index = e.target.getAttribute('data-index');
     board[index] = mark;
-    render(lis);
+    render();
     // check if the game is over: either a winner or a tie
-    const tie = checkTie(board);
-    const winner = checkWinner(board);
-    if (tie || winner) {
+    const gameResults = isGameOver(board);
+    if (gameResults.gameIsOver) {
       element.removeEventListener('click', markBoard);
-    }
-    if (tie) {
-      console.log(`it's a tie`);
-    }
-    if (winner) {
-	    console.log('there is a winner, game over');
+      const message = gameResults.tie ? `It's a tie` : `Player ${gameResults.winner.player} wins`;
+      console.log(message);
+      return;
     }
 	  isXNext = !isXNext;
   }

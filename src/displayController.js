@@ -12,12 +12,15 @@ function checkWinner(board) {
   const result = lines.map((line) => {
     const [a, b, c] = line;
     // console.log(a,b,c)
-    if (board[a]!=' ' && board[a] == board[b] && board[b]== board[c]) {
-      return true;
+    if (board[a] != ' ' && board[a] == board[b] && board[b] == board[c]) {
+      return {
+        someoneWins: true,
+        player: board[a],
+      };
     }
-  }, board)
+  }, board);
 
-  return result.some(ele=>ele==true);
+  return result.filter(ele=>ele?.someoneWins==true);
 }
 
 function checkTie(board) {
@@ -25,7 +28,14 @@ function checkTie(board) {
 }
 
 function isGameOver(board) {
-  
+  const tie = checkTie(board);
+  const winner = checkWinner(board)[0];
+  console.log(winner)
+  return {
+    gameIsOver: tie || winner?.someoneWins,
+    tie,
+    winner
+  }
 }
 
 export default function (player) {
@@ -33,6 +43,7 @@ export default function (player) {
   return {
     isXNext,
     checkWinner,
-    checkTie
+    checkTie,
+    isGameOver
   }
 }
