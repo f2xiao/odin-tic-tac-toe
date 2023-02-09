@@ -3,7 +3,7 @@ import displayController from "./displayController";
 
 const player1 = Player('tom', 'x');
 const player2 = Player('oreo', 'o');
-let { isXNext } = displayController(player2);
+let { isXNext, checkTie, checkWinner } = displayController(player2);
 
 let template = `<h1>Tic Tac Toe</h1>
 <div id="board">
@@ -48,31 +48,31 @@ function initBoard() {
   render();
 }
 
-function checkWinner() {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ]
-  const result = lines.map(line => {
-    const [a, b, c] = line;
-    // console.log(a,b,c)
-    if (board[a]!=' ' && board[a] == board[b] && board[b]== board[c]) {
-      return true;
-    }
-  })
+// function checkWinner() {
+//   const lines = [
+//     [0, 1, 2],
+//     [3, 4, 5],
+//     [6, 7, 8],
+//     [0, 3, 6],
+//     [1, 4, 7],
+//     [2, 5, 8],
+//     [0, 4, 8],
+//     [2, 4, 6]
+//   ]
+//   const result = lines.map(line => {
+//     const [a, b, c] = line;
+//     // console.log(a,b,c)
+//     if (board[a]!=' ' && board[a] == board[b] && board[b]== board[c]) {
+//       return true;
+//     }
+//   })
 
-  return result.some(ele=>ele==true);
-}
+//   return result.some(ele=>ele==true);
+// }
 
-function checkTie() {
-  return board.every(ele => ele != ' ');
-}
+// function checkTie() {
+//   return board.every(ele => ele != ' ');
+// }
 function markBoard(e) {
   // console.log(e.target);
   if (e.target.tagName == "LI" && e.target.textContent == ' ') {
@@ -80,17 +80,16 @@ function markBoard(e) {
     const index = e.target.getAttribute('data-index');
     board[index] = mark;
     render(lis);
-    // check if there is a winner if yes stop the game
-	  // by remove the click handler from the board
-    const tie = checkTie();
-    const winner = checkWinner();
+    // check if the game is over: either a winner or a tie
+    const tie = checkTie(board);
+    const winner = checkWinner(board);
     if (tie || winner) {
       element.removeEventListener('click', markBoard);
     }
     if (tie) {
       console.log(`it's a tie`);
     }
-    if (checkWinner()) {
+    if (winner) {
 	    console.log('there is a winner, game over');
     }
 	  isXNext = !isXNext;
