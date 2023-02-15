@@ -1,11 +1,7 @@
 export default function(){
 	let value = " ";
-	const addMark = function(player){
-		if (value == " ") {
+	const addMark = function (player) {
 			value = player.mark;
-		} else {
-			console.log("the place is taken")
-		}
 	}
 
 	const getValue= () => value;
