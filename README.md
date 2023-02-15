@@ -2,7 +2,7 @@
 simple tic  tac toe game with javascript modules and factory funnctions
 
 ## development
-2 modules:
+3 modules:
 - GameBoard
 - GameController
 - DisplayController
