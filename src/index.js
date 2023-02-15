@@ -4,4 +4,6 @@ import './style.css';
 
 const game = GameController();
 
-console.log(game);
+game.playerRound(0,0);
+game.playerRound(0,2);
+game.playerRound(1,2);
