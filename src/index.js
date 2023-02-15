@@ -1,6 +1,7 @@
-import gameBoard from "./gameBoard";
+import GameController from "./GameController" ;
 import './style.css';
 
 
+const game = GameController();
 
-gameBoard();
+console.log(game);
