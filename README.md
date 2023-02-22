@@ -15,7 +15,6 @@ classDiagram
     }
     class GameBoard{
         -board
-        -threeInRow()
         +getBoard()
         +markBoard()
         +printBoard()
