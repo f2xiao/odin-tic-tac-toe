@@ -1,9 +1,9 @@
 import GameBoard from "./GameBoard"
 export default function (player1 = {
-	name: "O",
+	name: "Player O",
 	mark: "o"
 }, player2 ={
-	name: "X",
+	name: "Player X",
 	mark: "x"
 }) {
 
@@ -72,7 +72,8 @@ export default function (player1 = {
 		// check if game is over
 		const isGameOver = gameOver(row, col);
 		if (isGameOver.over) {
-			console.log(`game is over, winner is player ${isGameOver.winnerMark}`)
+			// console.log(`game is over, winner is player ${isGameOver.winnerMark}`);
+			return isGameOver;
 		}
 
 		// switch player
@@ -80,5 +81,5 @@ export default function (player1 = {
 	}
 	
 
-	return {getActivePlayer, playerRound}
+	return {getActivePlayer, playerRound, getBoard: board.getBoard}
 }

@@ -13,7 +13,7 @@
    plugins: [
      new HtmlWebpackPlugin({
        title: 'Tic Tac Toe',
-      //  template: './src/index.html'
+       template: './assets/index.html'
      }),
    ],
    output: {
