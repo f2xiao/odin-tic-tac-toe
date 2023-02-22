@@ -5,8 +5,6 @@ simple tic  tac toe game with javascript modules and factory funnctions
 
 ```mermaid
 classDiagram
-
-    note "From Duck till Zebra"
     GameBoard o-- Cell
     GameController *-- GameBoard
     ScreenController *-- GameController
