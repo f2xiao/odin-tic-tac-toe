@@ -23,7 +23,7 @@ classDiagram
     class GameController{
         -board
         -players
-        -switchActivePlayer
+        -switchActivePlayer()
         -lineOfMark()
         -gameOver()
         +getActivePlayer()
