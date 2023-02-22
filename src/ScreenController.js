@@ -9,7 +9,6 @@ export default function () {
   const boardDiv = container.querySelector('#board');
   
   // define the funtcion to update the screen
-
   const updateScreen = () => { 
      // clear the board
      boardDiv.textContent = '';
@@ -35,19 +34,15 @@ export default function () {
     
   }
 
-
-  
   // define the click event handler
   const clickHandlerBoard = (e) => {
     const selectedCellColumn = e.target.dataset.column;
-    console.log(e.target.parentElement)
     const selectedCellRow = e.target.parentElement.dataset.row;
     // make sure a cell is clicked
     if (!selectedCellColumn || !selectedCellRow) return;
     // plyerRound
     const isGameOver = game.playerRound(selectedCellRow, selectedCellColumn);
 
-    console.log(isGameOver);
     //update the screen
     updateScreen();
     // check if game is over

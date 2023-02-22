@@ -67,7 +67,7 @@ export default function (player1 = {
 		board.markBoard(row, col, player);
 
 		// print the new board
-		printNewBoard();
+		// printNewBoard();
 
 		// check if game is over
 		const isGameOver = gameOver(row, col);

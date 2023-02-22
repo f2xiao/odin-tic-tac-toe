@@ -10,7 +10,7 @@ export default function(){
 	// _ _ _
 
 	let board = [];
-
+	// init the board
 	for (let i = 0; i < rows; i++){
 		board[i] = [];
 		for (let j = 0; j < cols; j++){
@@ -30,18 +30,6 @@ export default function(){
 			console.log("this place is taken")
 		}
 	}
-
-	// check if there is 3-in-a-row 
-	const threeInRow = () => {
-		for (let i = 0; i < rows; i++){
-			if (board[i].every((entry) => entry.getValue() == board[i][0] && board[i][0] !=" ")) {
-				return board[i][0];
-			} else {
-				return false;
-			}
-		}
-	}
-	
 	
 	
 	const printBoard = () => {
