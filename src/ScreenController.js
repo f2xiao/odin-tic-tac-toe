@@ -46,13 +46,20 @@ export default function () {
     //update the screen
     updateScreen();
     // check if game is over
-    if (isGameOver?.over) {
-      // remove click event handler
-      boardDiv.removeEventListener("click", clickHandlerBoard);
-      // show who is the winner
-      playerTurnDiv.textContent = `game is over, winner is player ${isGameOver.winnerMark}`;
-      return
+    // if game is over, remove the click handler and check if there is winner
+    if (isGameOver) {
+      const { over, winnerMark } = isGameOver;
+      if (over) {
+        // remove click event handler
+        boardDiv.removeEventListener("click", clickHandlerBoard);
+        // show who is the winner
+        
+        playerTurnDiv.textContent = `game is over${winnerMark? `, winner is player ${isGameOver.winnerMark}` : ''}.`;
+        
+        return
+      }
     }
+    
   }
 
   // attach the event handler to the element 

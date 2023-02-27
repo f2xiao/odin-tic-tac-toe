@@ -36,26 +36,37 @@ export default function (player1 = {
 		// check if there is 3-in-row or 3-in-col or 3-in-diag
 		const newBoard = board.getBoard();
 		const mark = newBoard[row][col];
-		// console.log(mark.getValue());
-		// these four arrays represent the 4 lines on the board
-		// if the mark entry is on any of the lines
-		// check if the values on that line is all equal to the mark
-		const rowArr = [...newBoard[row]];
-		const colArr = [newBoard[0][col], newBoard[1][col], newBoard[2][col]];
-		const diag1Arr = [newBoard[0][0], newBoard[1][1], newBoard[2][2]];
-		const diag2Arr = [newBoard[2][0], newBoard[1][1], newBoard[0][2]];
-		const fourArrs = [rowArr, colArr, diag1Arr, diag2Arr];
-		// check if mark is on any of the four lines, if yes, push it to check that line
-		const lines = [];
-		fourArrs.forEach((arr) => { 
-			if (arr.includes(mark)) {
-				lines.push(arr);
+		// check if the board is full
+		// check if each cell is filled
+		const isEachCellFilled = newBoard.map((row) => row.every((cell) => cell.getValue() != ' ')).every((row) => row);
+
+		if (!isEachCellFilled) {
+				// console.log(mark.getValue());
+			// these four arrays represent the 4 lines on the board
+			// if the mark entry is on any of the lines
+			// check if the values on that line is all equal to the mark
+			const rowArr = [...newBoard[row]];
+			const colArr = [newBoard[0][col], newBoard[1][col], newBoard[2][col]];
+			const diag1Arr = [newBoard[0][0], newBoard[1][1], newBoard[2][2]];
+			const diag2Arr = [newBoard[2][0], newBoard[1][1], newBoard[0][2]];
+			const fourArrs = [rowArr, colArr, diag1Arr, diag2Arr];
+			// check if mark is on any of the four lines, if yes, push it to check that line
+			const lines = [];
+			fourArrs.forEach((arr) => { 
+				if (arr.includes(mark)) {
+					lines.push(arr);
+				}
+			})
+			
+			return {
+				over: lineOfMark(lines, mark),
+				winnerMark: lineOfMark(lines, mark) ? mark.getValue() : '',
 			}
-		 })
-		
-		return {
-			over: lineOfMark(lines, mark),
-			winnerMark: mark.getValue(),
+		} else {
+			return {
+				over: true,
+				winnerMark: '',
+			}
 		}
 	 }
 	
@@ -71,6 +82,7 @@ export default function (player1 = {
 
 		// check if game is over
 		const isGameOver = gameOver(row, col);
+		console.log(isGameOver)
 		if (isGameOver.over) {
 			// console.log(`game is over, winner is player ${isGameOver.winnerMark}`);
 			return isGameOver;
