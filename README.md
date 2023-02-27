@@ -27,8 +27,8 @@ classDiagram
         -lineOfMark()
         -gameOver()
         +getActivePlayer()
-        -playerRound()
-        -getBoard()
+        +playerRound()
+        +getBoard()
     }
     note for GameController "private property board is an instance of GameBoard"
     class ScreenController{
